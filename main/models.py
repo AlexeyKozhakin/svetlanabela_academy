@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     name = models.CharField(max_length=100)
     photo = models.ImageField(null=True, blank=True, upload_to="images/profile/")
-    # user = models.OneToOneField()
 
     def __str__(self):
         return self.name
@@ -24,7 +23,7 @@ class User(models.Model):
 class Course(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    preview_video = models.FileField()
+    # preview_video = models.FileField()
 
 
 class Progress(models.Model):
@@ -44,7 +43,7 @@ class CheckHomework(models.Model):
 class Lesson(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    body = models.TextField()
-    video = models.FileField()
-    # course = models.ForeignKey()
+    # body = models.TextField()
+    # video = models.FileField()
+    courses = models.ManyToManyField(Course, blank=True, related_name="lessons")
 
