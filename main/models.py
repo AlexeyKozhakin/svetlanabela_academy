@@ -1,39 +1,37 @@
 from django.db import models
-
-
-class Profile(models.Model):
-    name = models.CharField(max_length=100)
-    photo = models.ImageField(null=True, blank=True, upload_to="images/profile/")
-
-    def __str__(self):
-        return self.name
+from django.contrib.auth.models import User
 
 
 class Course(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    # preview_video = models.FileField()
+    preview_video = models.FileField()
 
     def __str__(self):
         return self.title
 
 
-class User(models.Model):
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    # course = models.ManyToOneRel(Course, on_delete=models.CASCADE)
+class User(models.User):
     courses = models.ManyToManyField(Course, blank=True, related_name="user")
 
     def __str__(self):
         return self.username
 
 
+class Profile(models.Model):
+    name = models.CharField(max_length=100)
+    photo = models.ImageField(null=True, blank=True, upload_to="images/profile/")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
 class Lesson(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
-    # body = models.TextField()
-    # video = models.FileField()
+    body = models.TextField()
+    video = models.FileField()
     courses = models.ManyToManyField(Course, blank=True, related_name="lessons")
 
     def __str__(self):
@@ -41,14 +39,12 @@ class Lesson(models.Model):
 
 
 class Progress(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    opened_lessons = models.IntegerField()
-    passed_lessons = models.IntegerField()
-    percent = models.IntegerField()
+    user = models.ForeignKey(User,blank=True, related_name="progress")
+    course = models.ForeignKey(Course, blank=True, related_name="progress")
+    opened_lessons = models.ManyToManyField(Lesson, blank=True, related_name="progresses")
 
 
 class CheckHomework(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    doneHW = models.BooleanField()
+    user = models.ForeignKey(User, blank=True, related_name="CheckHomework")
+    lesson = models.ForeignKey(Lesson, blank=True, related_name="CheckHomework")
+    mark = models.IntegerField()
