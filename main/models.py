@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
 class Course(models.Model):
@@ -11,11 +11,8 @@ class Course(models.Model):
         return self.title
 
 
-class User(models.User):
-    courses = models.ManyToManyField(Course, blank=True, related_name="user")
-
-    def __str__(self):
-        return self.username
+class User(AbstractUser):
+    courses = models.ManyToManyField(Course, blank=True, related_name="courses")
 
 
 class Profile(models.Model):
@@ -39,12 +36,12 @@ class Lesson(models.Model):
 
 
 class Progress(models.Model):
-    user = models.ForeignKey(User,blank=True, related_name="progress")
-    course = models.ForeignKey(Course, blank=True, related_name="progress")
-    opened_lessons = models.ManyToManyField(Lesson, blank=True, related_name="progresses")
+    user = models.ForeignKey(User, blank=True, on_delete=models.CASCADE, related_name="progress")
+    course = models.ForeignKey(Course, blank=True, on_delete=models.CASCADE, related_name="progress")
+    opened_lessons = models.ManyToManyField(Lesson, blank=True, related_name="progress")
 
 
 class CheckHomework(models.Model):
-    user = models.ForeignKey(User, blank=True, related_name="CheckHomework")
-    lesson = models.ForeignKey(Lesson, blank=True, related_name="CheckHomework")
+    user = models.ForeignKey(User, blank=True, on_delete=models.CASCADE, related_name="CheckHomework")
+    lesson = models.ForeignKey(Lesson, blank=True, on_delete=models.CASCADE, related_name="CheckHomework")
     mark = models.IntegerField()
