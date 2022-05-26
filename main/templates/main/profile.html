@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+
+{% block title %}Profile{% endblock %}
+{% block page %}My Profile{% endblock %}
+{% block content %}
+<body>
+      <div class="flexbox-container">
+          <div class="flexbox-item box5">
+              <img src="{{ profile.photo.url }}" width="320" height="280" />
+          </div>
+          <div class="flexbox-item box6">
+              <h2>
+                  <p>Name : {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+                  <p>Surname : {{ profile.name }}</p>
+                  <p>Mobile : {{ profile.photo.url }}</p>
+                  <p>Email : {{ profile.user.email }}</p>
+              </h2></div>
+      </div>
+    </body>
+{% endblock %}

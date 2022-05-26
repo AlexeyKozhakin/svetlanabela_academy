@@ -1,0 +1,26 @@
+{% extends "main/base.html" %}
+{% block title %}Your Courses{% endblock %}
+{% block page %}
+    Your Courses
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="flexbox-container">
+        <div class="flexbox-item box00"><h2>Course</h2></div>
+        <div class="flexbox-item box000"><h2>Progress</h2></div>
+        {% for i in courses_list %}
+            {% for j in user.courses.all %}
+                {% if i == j %}
+                    <div class="flexbox-item box00">{{ i.title }}</div>
+                    <div class="flexbox-item box000">1 2 1 2 c'est un test</div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,35 @@
+{% extends "main/base.html" %}
+{% block title %}Your Courses{% endblock %}
+{% block page %}Your Courses{% endblock %}
+{% block content %}
+<body>
+      <div class="flexbox-container">
+        <div class="flexbox-item box1"><h1>{{ course.title }}</h1></div>
+        <div class="flexbox-item box2">
+            <video width="320" height="240" autoplay muted controls >
+                <source src="{{ course.preview_video.url }}" type="video/mp4">
+            </video>
+        </div>
+          <div class="flexbox-item box3"><h2>{{ course.description }}</h2></div>
+          <div class="flexbox-item box4">
+              {% if boolean == True %}
+                  {% for i in lessons %}
+                    {% for j in i.courses.all %}
+                        {% if j == course %}
+                            <h2><a href="http://127.0.0.1:8000/lessons/{{ i.id }}/">{{ i.name }}</a></h2>
+                        {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+              {% else %}
+                {% for i in lessons %}
+                    {% for j in i.courses.all %}
+                        {% if j == course %}
+                            <h2>{{ i.name }}</h2>
+                        {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+              {% endif %}
+              </div>
+      </div>
+    </body>
+{% endblock %}

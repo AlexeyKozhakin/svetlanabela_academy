@@ -1,0 +1,17 @@
+{% extends "main/base.html" %}
+{% block title %}{{ lesson.name }}{% endblock %}
+
+{% block content %}
+<body>
+      <div class="flexbox-container">
+        <div class="flexbox-item box1"><h1>{{ lesson.name }}</h1></div>
+        <div class="flexbox-item box2">
+            <video width="640" height="480" controls autoplay muted>
+                <source src="{{ lesson.video.url }}" type="video/mp4">
+            </video>
+        </div>
+          <div class="flexbox-item box3"><h2>{{ lesson.description }}</h2></div>
+          <div class="flexbox-item box4"><h3>{{ lesson.body }}</h3></div>
+      </div>
+    </body>
+{% endblock %}
