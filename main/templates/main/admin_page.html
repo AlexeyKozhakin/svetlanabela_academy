@@ -11,14 +11,14 @@
         <div class="flexbox-item box00"><h2>Course</h2></div>
         <div class="flexbox-item box000"><h2>Progress</h2></div>
         <div class="flexbox-item box0000"><h2>Access</h2></div>
-        {% for i in users %}
-        <div class="flexbox-item box0"><h2>{{ i.first_name}} {{i.last_name}}</h2></div>
+        {% for i in profiles %}
+        <div class="flexbox-item box0"><h2>{{ i.name }}</h2></div>
             {% for j in courses %}
             <div class="flexbox-item box00">{{ j.title }}</div>
             <div class="flexbox-item box000">Progress</div>
                 {% for h in i.courses.all %}
                     {% if h == j %}
-                        <div class="flexbox-item box0000">Access : oui</div>
+                        <div class="flexbox-item box0000"><progress value = "65" max = "100"/></div>
                     {% endif %}
                 {% endfor %}
             {% endfor %}

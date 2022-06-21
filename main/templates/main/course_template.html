@@ -13,13 +13,12 @@
           <div class="flexbox-item box3"><h2>{{ course.description }}</h2></div>
           <div class="flexbox-item box4">
               {% if boolean == True %}
-                  {% for i in lessons %}
-                    {% for j in i.courses.all %}
-                        {% if j == course %}
-                            <h2><a href="http://127.0.0.1:8000/lessons/{{ i.id }}/">{{ i.name }}</a></h2>
-                        {% endif %}
-                    {% endfor %}
+                  {% for i in opened_lessons %}
+                    <h2><a href="http://127.0.0.1:8000/courses/{{ course.id }}/{{ i.id }}/">{{ i.name }}</a></h2>
                   {% endfor %}
+                {% for j in closed_lessons %}
+                    <h2>{{ j.name }}</a></h2>
+                {% endfor %}
               {% else %}
                 {% for i in lessons %}
                     {% for j in i.courses.all %}

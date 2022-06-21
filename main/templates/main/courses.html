@@ -13,10 +13,18 @@
             {% for j in user.courses.all %}
                 {% if i == j %}
                     <div class="flexbox-item box00">{{ i.title }}</div>
-                    <div class="flexbox-item box000">1 2 1 2 c'est un test</div>
+                    {% for k in percent_list %}
+                        {% if k.course == j %}
+                            <div class="flexbox-item box000" >
+                                <p><progress value = "{{ k.percent }}" max = "100" /></p>
+                                <p>{{ k.percent }} % </p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
         {% endfor %}
+
     </div>
 </body>
 {% endblock %}

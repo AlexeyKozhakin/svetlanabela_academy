@@ -1,6 +1,7 @@
 {% extends "main/base.html" %}
 {% block title %}{{ lesson.name }}{% endblock %}
 
+
 {% block content %}
 <body>
       <div class="flexbox-container">
@@ -12,6 +13,12 @@
         </div>
           <div class="flexbox-item box3"><h2>{{ lesson.description }}</h2></div>
           <div class="flexbox-item box4"><h3>{{ lesson.body }}</h3></div>
+          {% if boolean == True %}
+              <form method="post" action="action/">
+                  {% csrf_token %}
+                    <button class="box0000">I have finished this lesson</button>
+              </form>
+          {% endif %}
       </div>
     </body>
 {% endblock %}
