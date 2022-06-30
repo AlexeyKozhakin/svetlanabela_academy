@@ -14,7 +14,7 @@
           <div class="flexbox-item box4">
               {% if boolean == True %}
                   {% for i in opened_lessons %}
-                    <h2><a href="http://127.0.0.1:8000/courses/{{ course.id }}/{{ i.id }}/">{{ i.name }}</a></h2>
+                    <h2><a href="/courses/{{ course.id }}/{{ i.id }}/">{{ i.name }}</a></h2>
                   {% endfor %}
                 {% for j in closed_lessons %}
                     <h2>{{ j.name }}</a></h2>

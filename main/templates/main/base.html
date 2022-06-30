@@ -161,12 +161,12 @@
         <div class="flexbox-container">
             {% for i in courses_list %}
                 <div class="box00" style="background-color: #4CAF50">
-                    <h2><a href="http://127.0.0.1:8000/courses/{{ i.id }}/">{{ i.title }}</a></h2>
+                    <h2><a href="/courses/{{ i.id }}/">{{ i.title }}</a></h2>
                 </div>
             {% endfor %}
             {% for i in not_courses_list %}
                 <div class="box00" style="background-color: #808080">
-                    <h2><a href="http://127.0.0.1:8000/courses/{{ i.id }}/">{{ i.title }}</a></h2>
+                    <h2><a href="/courses/{{ i.id }}/">{{ i.title }}</a></h2>
                 </div>
             {% endfor %}
         </div>

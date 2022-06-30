@@ -145,4 +145,4 @@ def action(request, id_course, id_lesson):
                             pro.save()
                             break
 
-    return HttpResponseRedirect("http://127.0.0.1:8000/courses/"+str(id_course)+"/")
+    return HttpResponseRedirect("/courses/"+str(id_course)+"/")
