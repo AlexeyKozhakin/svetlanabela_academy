@@ -1,33 +1,27 @@
-{% extends "main/base.html" %}
-{% block title %}Your Courses{% endblock %}
-{% block page %}
-    Your Courses
-{% endblock %}
+{% extends "../base/base.html" %}
+{% block title %} Courses {% endblock title%}
 
 {% block content %}
-<body>
-    <div class="flexbox-container">
-        <div class="flexbox-item box00"><h2>Course</h2></div>
-        <div class="flexbox-item box000"><h2>Progress</h2></div>
-        {% for i in courses_list %}
-            {% for j in user.courses.all %}
-                {% if i == j %}
-                    <div class="flexbox-item box00">{{ i.title }}</div>
-                    {% for k in percent_list %}
-                        {% if k.course == j %}
-                            <div class="flexbox-item box000" >
-                                <p><progress value = "{{ k.percent }}" max = "100" /></p>
-                                <p>{{ k.percent }} % </p>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-
-    </div>
-</body>
-{% endblock %}
+<div class="flexbox-container">
+  <div class="flexbox-item box00"><h2>Course</h2></div>
+  <div class="flexbox-item box000"><h2>Progress</h2></div>
+  {% for i in courses_list %}
+  {% for j in user.courses.all %}
+  {% if i == j %}
+  <div class="flexbox-item box00">{{ i.title }}</div>
+  {% for k in percent_list %}
+  {% if k.course == j %}
+  <div class="flexbox-item box000" >
+    <p><progress value = "{{ k.percent }}" max = "100" /></p>
+    <p>{{ k.percent }} % </p>
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+</div>
+{% endblock content %}
 
 
 
