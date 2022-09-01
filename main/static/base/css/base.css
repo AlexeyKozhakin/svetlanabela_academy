@@ -1,0 +1,70 @@
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 16px;
+}
+
+.m-header {
+    background-color: white;
+    padding-right: 9.889px;
+    padding-left: 9.889px;
+    border-bottom: 1px solid #F2F2F2;
+    box-shadow: 0 2px 5px #CCCCCC;
+}
+
+.m-header__userProfile {
+    padding: 6px;
+}
+.m-header__userProfilePhoto {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 1px solid #CCCCCC;
+}
+
+.m-header__userProfilePhoto:hover {
+    cursor: pointer;
+}
+
+.m-header__logo {
+    margin-bottom: 0;
+}
+
+.m-header__logoLink, .m-header__logoLink:hover {
+    text-decoration: none;
+    color: black;
+}
+.m-nav__icon {
+    vertical-align: text-bottom;
+    color: #CCCCCC;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.m-nav__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.m-nav__link {
+    color: #CCCCCC;    
+}
+
+.m-nav__link, .m-nav__link:hover {
+    color: #737373;
+    text-decoration: none;
+}
+
+.m-nav__item-isActive {
+    border: 1px solid #198754;
+    background-color: #198754;
+}
+
+.m-nav__item-isActive .m-nav__link {
+    color: white;
+}
