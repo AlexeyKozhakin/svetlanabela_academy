@@ -21,12 +21,14 @@ def index(request):
     courses_list = Course.objects.all()
     course_tab = []
     not_course_tab = []
+    enrolled_courses = profile.courses.all()
     for element in courses_list:
-        if element in profile.courses.all():
+        if element in enrolled_courses:
             course_tab.append(element)
         else:
             not_course_tab.append(element)
-    return render(request, "main/base.html", {
+    return render(request, "main/index.html", {
+        'profile': profile,
         'courses_list': course_tab,
         'not_courses_list': not_course_tab,
     })
