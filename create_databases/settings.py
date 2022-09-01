@@ -58,7 +58,7 @@ ROOT_URLCONF = 'create_databases.urls'
 TEMPLATES = [
     {
         'BACKEND':'django.template.backends.jinja2.Jinja2',
-        'DIRS': [ PROJECT_DIR / 'jinjatemplates' ],
+        'DIRS': [os.path.join(PROJECT_DIR, 'jinjatemplates'), os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
     },
     {
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'create_databases.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 
@@ -126,12 +126,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login/"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MEDIA_URL = ''
 MEDIA_ROOT = os.path.join(BASE_DIR, '')
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates/'),)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
