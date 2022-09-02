@@ -1,20 +1,17 @@
-{% extends "main/base.html" %}
+{% extends '../base/base.html' %}
 
-{% block title %}Profile{% endblock %}
-{% block page %}My Profile{% endblock %}
+{% load static %}
+
+{% block  external_styles %}
+<link rel="stylesheet" href="{% static 'main/css/profile.css' %}">
+{% endblock external_styles %}
+
 {% block content %}
-<body>
-      <div class="flexbox-container">
-          <div class="flexbox-item box5">
-              <img src="{{ profile.photo.url }}" width="320" height="280" />
-          </div>
-          <div class="flexbox-item box6">
-              <h2>
-                  <p>Name : {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
-                  <p>Surname : {{ profile.name }}</p>
-                  <p>Mobile : {{ profile.photo.url }}</p>
-                  <p>Email : {{ profile.user.email }}</p>
-              </h2></div>
-      </div>
-    </body>
-{% endblock %}
+<div class="m-fullUserProfile">
+  <img class="m-fullUserProfilePhoto" src="{{ profile.photo }}">
+  <div class="m-fullUserProfileBioWrapper">
+    <p class="m-fullUserProfileName">{{ profile.name }}</p>
+    <p class="m-fullUserProfileEmail">{{ user.email }}</p>
+  </div>
+</div>
+{% endblock content %}
