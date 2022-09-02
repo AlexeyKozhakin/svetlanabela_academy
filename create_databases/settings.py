@@ -53,6 +53,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Invalid variables handler for django templates
+class InvalidTemplateVariable(str):
+    def __mod__(self, other):
+        from django.template.base import TemplateSyntaxError
+        raise TemplateSyntaxError("Invalid variable: '%s'" % other)
+    
+
 ROOT_URLCONF = 'create_databases.urls'
 
 TEMPLATES = [
@@ -66,11 +73,13 @@ TEMPLATES = [
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
+            'string_if_invalid': InvalidTemplateVariable("%s"),
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.user_profile',
             ],
         },
     },
