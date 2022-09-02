@@ -16,19 +16,18 @@ class Tuple:
 
 @login_required(login_url='/login/')
 def index(request):
-    user_profile = User.objects.get(id=request.user.id)
-    profile = Profile.objects.get(user=user_profile)
+    user_profile = Profile.objects.get(user=request.user)
     courses_list = Course.objects.all()
     course_tab = []
     not_course_tab = []
-    enrolled_courses = profile.courses.all()
+    enrolled_courses = user_profile.courses.all()
     for element in courses_list:
         if element in enrolled_courses:
             course_tab.append(element)
         else:
             not_course_tab.append(element)
     return render(request, "main/index.html", {
-        'profile': profile,
+        'profile': user_profile,
         'courses_list': course_tab,
         'not_courses_list': not_course_tab,
     })
@@ -69,7 +68,7 @@ def course_page(request, id):
     user_profile = User.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=user_profile)
     course = Course.objects.get(id=id)
-    les = Lesson.objects.all()
+    les = Lesson.objects.filter(courses=course)
     check = CheckHomework.objects.all()
     progress = Progress.objects.get(user=user_profile, course=course)
     boolean = False
@@ -83,7 +82,7 @@ def course_page(request, id):
             else:
                 closed_lessons.append(le)
 
-    return render(request, "main/course_template.html", {
+    return render(request, "main/course.html", {
         'user': user_profile,
         'course': course,
         'lessons': les,
