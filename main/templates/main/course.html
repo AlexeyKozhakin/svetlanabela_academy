@@ -1,0 +1,52 @@
+{% extends "../base/base.html" %}
+
+{% load static %}
+
+{% block title %} {{ course.title }} {% endblock title %}
+
+{% block external_styles %}
+<link rel="stylesheet" href="{% static 'main/css/course.css' %}">
+<link href="https://vjs.zencdn.net/7.20.2/video-js.css" rel="stylesheet" />
+<link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
+{% endblock external_styles %}
+
+{% block content %}
+<div class="row">
+  <div class="col-6 m-course__previewVideo">
+    <div class="row">
+      <div class="col">
+	<video
+	  id="my-video"
+	  class="video-js vjs-theme-forest"
+	  controls
+	  preload="auto"
+	  data-setup="{}"
+	  >
+	  <source src="{{ course.preview_video.url }}" type="video/mp4" />
+	  <p class="vjs-no-js">
+	    To view this video please enable JavaScript, and consider upgrading to a web browser that
+	    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+	  </p>
+	</video>
+      </div>
+      <div class="row">
+	<h2 class="col-12 courseTitle">{{ course.title }}</h2>
+
+	<p class="col-12 m-course__description">
+	  {{ course.description }}
+	</p>
+      </div>
+    </div>
+  </div>
+  <div class="col m-courseLessons">
+    <h3 class="m-courseLessons__title">Lessons</h3>
+    
+    {% for lesson in lessons %}
+    <div class="m-courseLesson__wrapper">
+      <a class="m-courseLesson__link" href="{% url 'course_lesson' id_course=course.id id_lesson=lesson.id %}">{{ lesson.name }}</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script src="https://vjs.zencdn.net/7.20.2/video.min.js"></script>
+{% endblock %}
