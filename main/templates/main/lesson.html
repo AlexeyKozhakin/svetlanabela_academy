@@ -1,24 +1,46 @@
-{% extends "main/base.html" %}
-{% block title %}{{ lesson.name }}{% endblock %}
+{% extends "../base/base.html" %}
 
+{% load static %}
+
+{% block title %} {{ lesson.name }} {% endblock title %}
+
+{% block external_styles %}
+<link rel="stylesheet" href="{% static 'main/css/lesson.css' %}">
+<link href="https://vjs.zencdn.net/7.20.2/video-js.css" rel="stylesheet" />
+<link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
+{% endblock external_styles %}
 
 {% block content %}
-<body>
-      <div class="flexbox-container">
-        <div class="flexbox-item box1"><h1>{{ lesson.name }}</h1></div>
-        <div class="flexbox-item box2">
-            <video width="640" height="480" controls autoplay muted>
-                <source src="{{ lesson.video.url }}" type="video/mp4">
-            </video>
-        </div>
-          <div class="flexbox-item box3"><h2>{{ lesson.description }}</h2></div>
-          <div class="flexbox-item box4"><h3>{{ lesson.body }}</h3></div>
-          {% if boolean == True %}
-              <form method="post" action="action/">
-                  {% csrf_token %}
-                    <button class="box0000">I have finished this lesson</button>
-              </form>
-          {% endif %}
-      </div>
-    </body>
+<div class="row">
+  <div class="col">
+    <video
+      class="video-js vjs-theme-forest m-lesson__video"
+      controls
+      preload="auto"
+      data-setup="{}"
+      >
+      <source src="{{ lesson.video.url }}" type="video/mp4" />
+      <p class="vjs-no-js">
+	To view this video please enable JavaScript, and consider upgrading to a web browser that
+	<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+      </p>
+    </video>
+    <h3 class="m-lesson__name">{{ lesson.name }}</h3>
+    <p class="m-lesson__description">
+      {{ lesson.description }}
+    </p>
+
+    <p class="m-lesson__body">
+      {{ lesson.body }}
+    </p>
+  </div>
+</div>
+
+{% if boolean == True %}
+<form method="post" action="action/">
+  {% csrf_token %}
+  <button class="btn btn-success">I have completed this lesson</button>
+</form>
+{% endif %}
+<script src="https://vjs.zencdn.net/7.20.2/video.min.js"></script>
 {% endblock %}
