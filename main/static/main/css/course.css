@@ -3,8 +3,8 @@
 }
 
 .m-course__previewVideo {
-    width: 100%;
-    max-width: 640px;
+    flex: 1 1 100%;
+    max-width: 100%;
 }
 
 .m-courseLessons {
@@ -45,7 +45,14 @@
     margin-top: 15px;
 }
 
-.h-coursesNavItemActive {
-    border: 1px solid #125F3B;
-    background-color: #125F3B;
+@media screen and (max-width: 1000px) {
+
+    .courseWrapper__1 {
+	flex-direction: column;
+    }
+
+    .courseWrapper__2 {
+	width: 100%;
+	margin-bottom: 20px;
+    }
 }
