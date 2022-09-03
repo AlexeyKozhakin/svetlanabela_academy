@@ -1,28 +1,32 @@
-{% extends "../base/base.html" %}
-{% block title %} Courses {% endblock title%}
+{% extends '../base/base.html' %}
+
+{% load static %}
+{% load course_tags %}
+
+{% block external_styles %}
+<link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/courses.css' %}">
+{% endblock external_styles %}
 
 {% block content %}
-<div class="flexbox-container">
-  <div class="flexbox-item box00"><h2>Course</h2></div>
-  <div class="flexbox-item box000"><h2>Progress</h2></div>
-  {% for i in courses_list %}
-  {% for j in user.courses.all %}
-  {% if i == j %}
-  <div class="flexbox-item box00">{{ i.title }}</div>
-  {% for k in percent_list %}
-  {% if k.course == j %}
-  <div class="flexbox-item box000" >
-    <p><progress value = "{{ k.percent }}" max = "100" /></p>
-    <p>{{ k.percent }} % </p>
+
+{% if courses_list %}
+<h2 class="mb-3 section__title"> My courses </h2>
+<div class="m-coursesWrapper">
+  {% for course in courses_list %}
+  <div class="m-course">
+    <h3 class="m-course__title">
+      <a class="m-course__link" href="{% url 'course_detail' id=course.id %}">{{ course.title }}</a>
+    </h3>
+    <p class="m-course__description">
+      {{ course.description }}
+    </p>
+    <div class="m-course__progress mx-3 badge bg-success">Progress: {{ course | course_progress:request.user }}%</div>
+    <div class="m-course__enrollButtonWrapper">
+      <a class="btn btn-sm btn-outline-success rounded-0 m-course__enrollButton" href="{% url 'course_detail' id=course.id %}">Go to course</a>
+    </div>
   </div>
-  {% endif %}
-  {% endfor %}
-  {% endif %}
-  {% endfor %}
   {% endfor %}
 </div>
+{% endif %}
 {% endblock content %}
-
-
-
-
