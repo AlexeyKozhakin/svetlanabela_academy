@@ -6,7 +6,7 @@ class Course(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     preview_video = models.FileField(null=True, blank=True, upload_to="videos/courses/")
-
+        
     def __str__(self):
         return self.title
 

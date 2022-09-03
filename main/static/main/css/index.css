@@ -1,0 +1,65 @@
+body {
+    background-color: #F2F2F2;
+}
+
+.section__title {
+    font-size: 24px;
+}
+.m-contentWrapper {
+    margin-top: 41.887px;
+}
+.m-coursesWrapper {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+    grid-gap: 20px;
+}
+.m-course {
+    background-color: white;
+}
+
+.m-course:hover {
+    border-left: 4px solid #198754;
+    cursor: pointer;
+}
+
+.m-course__title {
+    font-size: 20px;
+    padding: 10px;
+    padding-bottom: 7px;
+    color: #737373;
+}
+
+.m-course__link, .m-course__link:hover {
+    color: inherit;
+    text-decoration: none;
+}
+.m-course__description {
+    color: #8C8C8C;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: justify;
+}
+
+.m-course__enrollButtonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.h-homeNavItemActive {
+    border: 1px solid #125F3B;
+    background-color: #125F3B;
+}
+
+.h-homeNavItemActive .m-nav__link {
+    color: white;
+}
+
+@media screen and (max-width: 756px) {
+    .m-coursesWrapper {
+	grid-template-columns: minmax(300px, 1fr)
+    }
+
+}

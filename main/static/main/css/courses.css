@@ -1,0 +1,17 @@
+.h-coursesNavItemActive {
+    border: 1px solid #125F3B;
+    background-color: #125F3B;
+}
+
+.h-coursesNavItemActive .m-nav__link {
+    color: white;
+}
+
+.h-homeNavItemActive {
+    border: none;
+    background-color: inherit;
+}
+
+.h-homeNavItemActive .m-nav__link {
+    color: #737373;
+}

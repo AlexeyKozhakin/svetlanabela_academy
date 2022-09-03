@@ -1,0 +1,24 @@
+.m-contentWrapper {
+    margin-top: 41px;
+}
+.m-lesson__description {
+    color: #8C8C8C;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.m-lesson__name {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.m-lesson__body {
+    text-align: justify;
+    color: #333333;
+}
+
+.m-lesson__video {
+    width: 100%;
+    max-width: 640px;
+}
