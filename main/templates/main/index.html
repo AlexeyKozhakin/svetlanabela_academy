@@ -8,8 +8,7 @@
 {% endblock external_styles %}
 
 {% block content %}
-{% if courses_list %}
-<h2 class="mb-3 section__title"> My courses </h2>
+<h2 class="mb-3 section__title"> Courses </h2>
 <div class="m-coursesWrapper">
   {% for course in courses_list %}
   <div class="m-course">
@@ -24,12 +23,7 @@
     </div>
   </div>
   {% endfor %}
-</div>
-{% endif %}
 
-{% if not_courses_list %}
-<h2 class="mb-3 mt-5 section__title"> Other courses</h2>
-<div class="m-coursesWrapper">
   {% for course in  not_courses_list %}
     <div class="m-course">
       <h3 class="m-course__title">
@@ -44,5 +38,4 @@
     </div>
   {% endfor %}
 </div>
-{% endif %}
 {% endblock content %}

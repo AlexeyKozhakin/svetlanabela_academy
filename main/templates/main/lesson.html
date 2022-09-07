@@ -36,10 +36,10 @@
   </div>
 </div>
 
-{% if boolean == True %}
-<form method="post" action="action/">
+{% if boolean %}
+<form method="post" action="{% url 'lesson_completed' id_course=course.id id_lesson=lesson.id %}">
   {% csrf_token %}
-  <button class="btn btn-success">I have completed this lesson</button>
+  <button class="btn btn-success" type="submit">I have completed this lesson</button>
 </form>
 {% endif %}
 <script src="https://vjs.zencdn.net/7.20.2/video.min.js"></script>

@@ -13,7 +13,7 @@
 {% if courses_list %}
 <h2 class="mb-3 section__title"> My courses </h2>
 <div class="m-coursesWrapper">
-  {% for course in courses_list %}
+  {% for course in user.courses.all %}
   <div class="m-course">
     <h3 class="m-course__title">
       <a class="m-course__link" href="{% url 'course_detail' id=course.id %}">{{ course.title }}</a>
@@ -21,7 +21,13 @@
     <p class="m-course__description">
       {{ course.description }}
     </p>
-    <div class="m-course__progress mx-3 badge bg-success">Progress: {{ course | course_progress:request.user }}%</div>
+    {% for c in percent_list %}
+    {% if course == c.course %}
+    <div class="m-course__progress mx-3 badge bg-success">
+      Progress: {{ c.percent }}
+    </div>
+    {% endif %}
+    {% endfor %}
     <div class="m-course__enrollButtonWrapper">
       <a class="btn btn-sm btn-outline-success rounded-0 m-course__enrollButton" href="{% url 'course_detail' id=course.id %}">Go to course</a>
     </div>
