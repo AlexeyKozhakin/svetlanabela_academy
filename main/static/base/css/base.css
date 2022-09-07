@@ -8,48 +8,53 @@ h1 {
 }
 
 .m-header, .m-headerNoNav {
-    background-color: white;
+    background-color: #198754;
     padding-right: 9.889px;
     padding-left: 9.889px;
-    border-bottom: 1px solid #F2F2F2;
-    box-shadow: 0 2px 5px #CCCCCC;
     height: 50px;
-}
-
-.m-header__userProfile {
-    padding: 6px;
-}
-.m-header__userProfilePhoto {
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
-    border-radius: 18px;
-    border: 1px solid #CCCCCC;
-}
-
-.m-header__userProfilePhoto:hover {
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .m-header__logo {
     margin-bottom: 0;
+    font-size: 18px;
 }
 
 .m-header__logoLink, .m-header__logoLink:hover {
     text-decoration: none;
-    color: black;
+    color: white;
+}
+.m-contentWrapper {
+    margin-bottom: 95px;
+}
+.m-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 -3px 2px #E6E6E6;
+    height: 80px;
+    justify-content: center;
 }
 .m-nav__icon {
     vertical-align: text-bottom;
     color: #CCCCCC;
+    font-size: 36px;
     display: inline-block;
-    margin-right: 5px;
 }
 
 .m-nav__item {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: 40px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .m-nav__link, .m-nav__link:hover {
@@ -57,73 +62,10 @@ h1 {
     text-decoration: none;
 }
 
-.m-nav__item-isActive {
-    border: 1px solid #125F3B;
-    background-color: #125F3B;
-}
-
-.m-nav__item-isActive .m-nav__link {
-    color: white;
-}
-
-#mobileNavOpen {
-    display: none;
-}
-
-#mobileNavClose {
-    display: none;
-    cursor: pointer;
-}
-.open {
-    margin-left: 0 !important;
-}
-
-
-.visible {
-    display: block !important;
-}
-
-@media screen and (max-width: 776px) {
- 
-    .m-nav {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 9999;
-	width: 300px;
-	height: 100vh;
-	flex-direction: column;
-	background-color: white;
-	margin-right: 0;
-	margin-left: 0;	
-	padding-top: 80px;
-	margin-left: -300px;
-	transition: margin-left .3s;
-	transition-timing-function: ease-in-out;
-    }
+@media screen and (max-width: 620px) {
     .m-nav__item {
-	width: 100%;
-	flex:  0 0 auto;
-	justify-content: flex-start;
-	padding: 20px;
-	margin-left: 0;
-	margin-right: 0;
-    }
-    .m-header__logoWrapper {
-	min-width: 150px;
-    }
-
-    #mobileNavOpen {
-	display: flex;
-	align-items: center;
-    }
-
-    #mobileNavClose {
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: rgba(25, 25, 25, .4);
-	width: 100vw;
-	height: 100vh;
+	margin-right: 15px;
+	padding-right: 15px;
+	padding-left: 15px;
     }
 }

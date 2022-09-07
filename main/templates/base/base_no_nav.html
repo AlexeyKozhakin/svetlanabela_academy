@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Svetlana Abela Academy{% endblock title %}</title>
+    <title>{% block title %} ACADEMY OF SVETLANA ABELA {% endblock title %}</title>
 
     <!-- CSS Normalization -->
     <link rel="stylesheet" href="{% static 'base/css/normalize.css' %}">
@@ -32,12 +32,7 @@
   </head>
   <body>
     <div class="m-headerNoNav">
-      <div class="row align-items-center h-100">
-	
-	<div class="col">
-	  <h1 class="d-flex align-items-center m-header__logo"><a class="m-header__logoLink" href="{% url 'index' %}">SA ACADEMY</a></h1>
-	</div>
-      </div>
+      <h1 class="m-header__logo"><a class="m-header__logoLink" href="{% url 'index' %}">ACADEMY OF SVETLANA ABELA</a></h1>
     </div>
 
     <div class="container m-contentWrapper">

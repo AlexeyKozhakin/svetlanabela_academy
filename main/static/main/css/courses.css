@@ -3,15 +3,19 @@
     background-color: #125F3B;
 }
 
-.h-coursesNavItemActive .m-nav__link {
+.h-coursesNavLinkActive, .h-coursesNavLinkActive:hover {
     color: white;
 }
 
+/* 
+   Courses page and index uses the same stylesheet (index.css),
+   In courses page, reset the values of h-homeNavItemActive and h-homeNavLinkActive
+*/
 .h-homeNavItemActive {
     border: none;
     background-color: inherit;
 }
 
-.h-homeNavItemActive .m-nav__link {
+.h-homeNavLinkActive, .h-homeNavLinkActive:hover {
     color: #737373;
 }

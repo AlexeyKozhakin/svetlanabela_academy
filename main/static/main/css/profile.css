@@ -30,3 +30,12 @@ body {
 .m-fullUserProfileName {
     font-size: 18px;
 }
+
+.h-profileNavItemActive {
+    border: 1px solid #125F3B;
+    background-color: #125F3B;
+}
+
+.h-profileNavItemActive .m-nav__link {
+    color: white;
+}

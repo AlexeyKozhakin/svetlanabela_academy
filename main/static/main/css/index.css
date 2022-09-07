@@ -53,7 +53,7 @@ body {
     background-color: #125F3B;
 }
 
-.h-homeNavItemActive .m-nav__link {
+.h-homeNavLinkActive, .h-homeNavLinkActive:hover {
     color: white;
 }
 

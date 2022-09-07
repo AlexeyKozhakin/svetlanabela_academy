@@ -3,7 +3,7 @@
   <head>
        <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Svetlana Abela Academy{% endblock title %}</title>
+    <title>{% block title %} ACADEMY OF SVETLANA ABELA {% endblock title %}</title>
 
     <!-- CSS Normalization -->
     <link rel="stylesheet" href="{% static 'base/css/normalize.css' %}">
@@ -32,66 +32,30 @@
   </head>
   <body>
     <div class="m-header">
-      <div class="row my-0">
-
-	<div id="mobileNavOpen" class="col">
-	  <button id="mobileNavOpen__button" class="btn btn-success"><span class="material-icons">menu</span></button>
-	</div>
-	
-	<div class="col d-flex align-items-center m-header__logoWrapper">
-	  <h1 class="m-header__logo"><a class="m-header__logoLink" href="{% url 'index' %}">SA ACADEMY</a></h1>
-	</div>
-
-	<div class="col my-0">
-	  <nav class="row m-nav h-100">
-	    <div class="col m-nav__item h-homeNavItemActive"><span class="material-icons-outlined m-nav__icon">home</span><a class="m-nav__link" href="{% url 'index' %}">Home</a></div>
-	    <div class="col m-nav__item h-coursesNavItemActive"><span class="material-icons-outlined m-nav__icon">local_library</span><a class="m-nav__link" href="{% url 'courses' %}">My Courses</a></div>
-
-	  </nav>
-	</div>
-
-	<div class="col m-header__userProfile d-flex justify-content-end pr-3">
-	  <div class="dropdown">
-	    <a href="#" class="dropdown-toggle"  data-bs-toggle="dropdown"><img class="m-header__userProfilePhoto" src="{{ profile.photo }}"></a>
-	    <div class="dropdown-menu">
-	      <div class="dropdown-item">
-		<span class="material-icons-outlined m-nav__icon">manage_accounts</span>
-		<a class="m-nav__link" href="{% url 'profile' %}">Profile</a>
-	      </div>
-	      
-	      <div>
-		<hr class="dropdown-divider">
-	      </div>
-
-	      <div class="dropdown-item">
-		<span class="material-icons-outlined m-nav__icon">logout</span>
-		<a class="m-nav__link" href="{% url 'logout' %}">Logout</a>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-      </div>
+      <h1 class="m-header__logo"><a class="m-header__logoLink" href="{% url 'index' %}">ACADEMY OF SVETLANA ABELA</a></h1>
     </div>
 
     <div class="container m-contentWrapper">
       {% block content %} {% endblock content %}
     </div>
-    <div id="mobileNavClose"></div>
-    <script>
-      let nav = $(".m-nav");
-      let mobileNavClose = $("#mobileNavClose");
-      let navOpenButton = $("#mobileNavOpen__button");
-      
-      navOpenButton.click(function() {
-      console.log("Clicked");
-      nav.addClass("open");
-      mobileNavClose.addClass("visible");
-      });
 
-      mobileNavClose.click(function() {
-      mobileNavClose.removeClass("visible");
-      nav.removeClass("open");
-      });
-    </script>
+    <nav class="m-nav">
+      <div class="m-nav__item h-homeNavItemActive">
+	<span class="material-icons-outlined m-nav__icon">home</span>
+	<a href="{% url 'index' %}" class="m-nav__link h-homeNavLinkActive">Home</a>
+      </div>
+      <div class="m-nav__item h-coursesNavItemActive">
+	<span class="material-icons-outlined m-nav__icon">local_library</span>
+	<a href="{% url 'courses' %}" class="m-nav__link h-coursesNavLinkActive">My courses</a>
+      </div>
+      <div class="m-nav__item h-profileNavItemActive">
+	<span class="material-icons-outlined m-nav__icon">account_circle</span>
+	<a href="{% url 'profile' %}" class="m-nav__link h-profileNavLinkActive">Profile</a>
+      </div>
+      <div class="m-nav__item">
+	<span class="material-icons-outlined m-nav__icon">logout</span>
+	<a href="{% url 'logout' %}" class="m-nav__link">Log out</a>
+      </div>
+    </nav>
   </body>
 </html>
