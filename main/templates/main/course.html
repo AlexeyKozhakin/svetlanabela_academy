@@ -38,15 +38,19 @@
       </div>
     </div>
   </div>
+  {# The course is not locked #}
   {% if boolean %}
   <div class="col m-courseLessons">
     <h3 class="m-courseLessons__title">Lessons</h3>
 
+    {# Render the accessible lessons #}
     {% for opened_lesson in opened_lessons %}
     <div class="m-courseLesson__wrapper">
       <a class="m-courseLesson__link" href="{% url 'course_lesson' id_course=course.id id_lesson=opened_lesson.id %}">{{ opened_lesson.name }}</a>
     </div>
     {% endfor %}
+
+    {# Closed lessons are opened if the preceeding lesson has been completed #}
     {% for closed_lesson in closed_lessons %}
     <div class="m-courseLesson__wrapper d-flex">
       <span>{{ closed_lesson.name }}</span>
@@ -54,7 +58,20 @@
     </div>
     {% endfor %}
   </div>
+  {% else %}
+  {# Locked lessons #}
+  <div class="col m-courseLessons">
+    <h3 class="m-courseLessons__title">Lessons</h3>
+    
+    {% for lesson in lessons %}
+    <div class="m-courseLesson__wrapper d-flex">
+      <span>{{ lesson.name }}</span>
+      <span class="material-icons-outlined" style="margin-left: auto; color: white;">lock</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
 </div>
-{% endif %}
+
 <script src="https://vjs.zencdn.net/7.20.2/video.min.js"></script>
 {% endblock %}
