@@ -21,11 +21,23 @@ class Profile(models.Model):
         return self.name
 
 
+# This Video model should hold a reference to the lesson it relates to
+# In order to follow the one to many relationship that exists
+# But its more appropriate for the user for the lessons to hold the videos field
+class Video(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.CharField(max_length=255)
+    url = models.URLField(verbose_name="Youtube link")
+
+    def __str__(self):
+        return self.title
+
+
 class Lesson(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     body = models.TextField()
-    video = models.FileField(null=True, blank=True, upload_to="videos/lessons/")
+    videos = models.ManyToManyField(Video, related_name="videos", null=True)
     courses = models.ManyToManyField(Course, blank=True, related_name="lessons")
 
     def __str__(self):
