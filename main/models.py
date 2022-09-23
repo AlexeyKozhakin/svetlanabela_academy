@@ -27,7 +27,11 @@ class Profile(models.Model):
 class Video(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=255)
-    url = models.URLField(verbose_name="Youtube link")
+    youtube_video_id = models.CharField(max_length=50)
+
+    @property
+    def embed_url(self):
+        return "{}/{}".format("https://youtube.com/embed", self.youtube_video_id)
 
     def __str__(self):
         return self.title
