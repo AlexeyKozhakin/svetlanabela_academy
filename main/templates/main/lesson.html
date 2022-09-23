@@ -11,36 +11,34 @@
 {% endblock external_styles %}
 
 {% block content %}
+<h3 class="m-lesson__name">{{ lesson.name | upper }}</h3>
 <div class="row">
-  <div class="col">
-    <video
-      class="video-js vjs-theme-forest m-lesson__video"
-      controls
-      preload="auto"
-      data-setup="{}"
-      >
-      <source src="{{ lesson.video.url }}" type="video/mp4" />
-      <p class="vjs-no-js">
-	To view this video please enable JavaScript, and consider upgrading to a web browser that
-	<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    <div class="col">
+      <div class="m-lesson__videos">
+        {% for lesson_video in lesson.videos.all %}
+          <div class="m-lesson__video">
+            <iframe width="300" height="300" src="{{ lesson_video.embed_url }}" allowfullscreen></iframe>
+          </div>
+        {% endfor %}
+      </div>
+      <h4 class="m-lesson__descriptionTitle">
+        <span class="material-icons-outlined descriptionIcon">description</span>
+        <span>Description</span>
+      </h4>
+      <p class="m-lesson__description">
+        {{ lesson.description }}
       </p>
-    </video>
-    <h3 class="m-lesson__name">{{ lesson.name }}</h3>
-    <p class="m-lesson__description">
-      {{ lesson.description }}
-    </p>
 
-    <p class="m-lesson__body">
-      {{ lesson.body }}
-    </p>
-  </div>
+      <p class="m-lesson__body">
+        {{ lesson.body }}
+      </p>
+    </div>
 </div>
 
 {% if boolean %}
 <form method="post" action="{% url 'lesson_completed' id_course=course.id id_lesson=lesson.id %}">
   {% csrf_token %}
-  <button class="btn btn-success" type="submit">I have completed this lesson</button>
+  <button class="btn btn-success rounded-0" type="submit">I have completed this lesson</button>
 </form>
 {% endif %}
-<script src="https://vjs.zencdn.net/7.20.2/video.min.js"></script>
 {% endblock %}

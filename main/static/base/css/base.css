@@ -65,7 +65,11 @@ h1 {
 @media screen and (max-width: 620px) {
     .m-nav__item {
 	margin-right: 15px;
-	padding-right: 15px;
-	padding-left: 15px;
+	padding-right: 12px;
+	padding-left: 12px;
+    }
+
+    body {
+        font-size: 14px;
     }
 }
