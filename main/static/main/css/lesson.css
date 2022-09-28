@@ -27,11 +27,6 @@
     color: #333333;
 }
 
-.m-lesson__video {
-    width: 100%;
-    max-width: 640px;
-}
-
 .m-lesson__videos {
     display: grid;
     grid-template-rows: auto;
@@ -39,11 +34,19 @@
     grid-gap: 20px;
 }
 
+.m-lesson__videoDescription {
+    color: #8C8C8C;
+    margin-top: 10px;
+}
+
 .m-lesson__video {
     position: relative;
     padding-bottom: 56.10%;
     height: 0;
     overflow: hidden;
+    width: 100%;
+    max-width: 640px;
+    background-color: #D9ECD9;
 }
 
 .m-lesson__video iframe,

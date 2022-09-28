@@ -16,9 +16,15 @@
     <div class="col">
       <div class="m-lesson__videos">
         {% for lesson_video in lesson.videos.all %}
-          <div class="m-lesson__video">
-            <iframe width="300" height="300" src="{{ lesson_video.embed_url }}" allowfullscreen></iframe>
+          <div class="m-lesson__videoWrapper">
+            <div class="m-lesson__video">
+              <iframe width="300" height="300" src="{{ lesson_video.embed_url }}" allowfullscreen></iframe>
+            </div>
+            <div class="m-lesson__videoDescription">
+              {{ lesson_video.description }}
+            </div>
           </div>
+
         {% endfor %}
       </div>
       <h4 class="m-lesson__descriptionTitle">

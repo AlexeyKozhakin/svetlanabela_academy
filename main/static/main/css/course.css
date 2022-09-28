@@ -3,8 +3,23 @@
 }
 
 .m-course__previewVideo {
-    flex: 1 1 100%;
-    max-width: 100%;
+    position: relative;
+    padding-bottom: 56.10%;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    max-width: 640px;
+    background-color: #D9ECD9;
+}
+
+.m-course__previewVideo iframe,
+.m-course__previewVideo object,
+.m-course__previewVideo embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .m-courseLessons {
@@ -47,11 +62,11 @@
 
 @media screen and (max-width: 1000px) {
 
-    .courseWrapper__1 {
+    .courseWrapper {
 	flex-direction: column;
     }
 
-    .courseWrapper__2 {
+    .previewVideoAndDescriptionWrapper {
 	width: 100%;
 	margin-bottom: 20px;
     }

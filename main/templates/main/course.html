@@ -11,30 +11,20 @@
 {% endblock external_styles %}
 
 {% block content %}
-<div class="row courseWrapper__1">
-  <div class="col-6 courseWrapper__2">
-    <div class="row courseWrapper__3">
-      <div class="col">
-	<video
-	  id="course-previewVideo"
-	  class="video-js vjs-theme-forest m-course__previewVideo"
-	  controls
-	  preload="auto"
-	  data-setup="{}"
-	  >
-	  <source src="{{ course.preview_video.url }}" type="video/mp4" />
-	  <p class="vjs-no-js">
-	    To view this video please enable JavaScript, and consider upgrading to a web browser that
-	    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-	  </p>
-	</video>
+<div class="row courseWrapper">
+  <div class="col-6 previewVideoAndDescriptionWrapper">
+    <div class="row">
+      <div class="col-12">
+	    <div class="m-course__previewVideo">
+            <iframe width="300" height="300" src="{{ course.preview_video.embed_url }}" allowfullscreen></iframe>
+        </div>
       </div>
       <div class="row">
-	<h2 class="col-12 courseTitle">{{ course.title }}</h2>
+	    <h2 class="col-12 courseTitle">{{ course.title }}</h2>
 
-	<p class="col-12 m-course__description">
-	  {{ course.description }}
-	</p>
+	    <p class="col-12 m-course__description">
+	    {{ course.description }}
+	    </p>
       </div>
     </div>
   </div>
@@ -72,6 +62,4 @@
   </div>
   {% endif %}
 </div>
-
-<script src="https://vjs.zencdn.net/7.20.2/video.min.js"></script>
 {% endblock %}
