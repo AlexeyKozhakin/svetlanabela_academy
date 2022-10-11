@@ -24,7 +24,7 @@
     {% for c in percent_list %}
     {% if course == c.course %}
     <div class="m-course__progress mx-3 badge bg-success">
-      Progress: {{ c.percent }}
+      Progress: {{ c.percent | floatformat:"0" }}
     </div>
     {% endif %}
     {% endfor %}

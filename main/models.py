@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 # But its more appropriate for the user for the lessons to hold the videos field
 class Video(models.Model):
     title = models.CharField(max_length=50)
-    description = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     youtube_video_id = models.CharField(max_length=50)
 
     @property
