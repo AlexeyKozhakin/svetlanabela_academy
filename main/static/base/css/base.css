@@ -36,9 +36,10 @@ h1 {
     width: 100%;
     display: flex;
     background-color: white;
-    box-shadow: 0 -3px 2px #E6E6E6;
+    border-top: 1px solid #E6E6E6;
     height: 80px;
     justify-content: center;
+    z-index: 1000;
 }
 .m-nav__icon {
     vertical-align: text-bottom;

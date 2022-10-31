@@ -1,0 +1,29 @@
+.youtube-iframe-container .top-links-barrier {
+    display: block;
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    height: 60px;
+    background-color: white;
+}
+.youtube-iframe-container {
+    position: relative;
+}
+
+.youtube-fullscreen-substitute {
+    background-color: black;
+    width: 35px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.youtube-fullscreen-substitute img {
+    width: 100%;
+    height: 100%;
+}

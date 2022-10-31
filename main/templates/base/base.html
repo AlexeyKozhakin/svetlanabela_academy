@@ -27,6 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
 
     <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/youtube_nobranding.css' %}">
 
     {% block external_styles %} {% endblock external_styles %}
     {% block external_scripts %} {% endblock external_scripts %}
@@ -58,5 +59,6 @@
 	<a href="{% url 'logout' %}" class="m-nav__link">Log out</a>
       </div>
     </nav>
+  <script src="{% static 'main/js/youtube_nobranding.js' %}"></script>
   </body>
 </html>

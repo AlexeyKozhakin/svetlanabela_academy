@@ -17,8 +17,12 @@
       <div class="m-lesson__videos">
         {% for lesson_video in lesson.videos.all %}
           <div class="m-lesson__videoWrapper">
-            <div class="m-lesson__video">
+            <div class="m-lesson__video youtube-iframe-container">
+              <span class="top-links-barrier"></span>
               <iframe width="300" height="300" src="{{ lesson_video.embed_url }}" allowfullscreen></iframe>
+              <div class="youtube-fullscreen-substitute" onclick="toggleFullScreen(event);">
+                <img src="{% static 'main/img/fs.png' %}">
+              </div>
             </div>
             <div class="m-lesson__videoDescription">
               {{ lesson_video.description }}

@@ -6,17 +6,27 @@
 
 {% block external_styles %}
 <link rel="stylesheet" href="{% static 'main/css/course.css' %}">
-<link href="https://vjs.zencdn.net/7.20.2/video-js.css" rel="stylesheet" />
-<link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
 {% endblock external_styles %}
+
+{% block external_scripts %}
+
+{% endblock external_scripts %}
 
 {% block content %}
 <div class="row courseWrapper">
   <div class="col-6 previewVideoAndDescriptionWrapper">
     <div class="row">
-      <div class="col-12">
-	    <div class="m-course__previewVideo">
-            <iframe id="iframe" width="300" height="300" src="{{ course.preview_video.embed_url }}" allowfullscreen></iframe>
+      <div class="col-12" style="max-width: 514px;">
+	    <div class="m-course__previewVideo youtube-iframe-container">
+            <span class="top-links-barrier"></span>
+            <iframe width="400" height="280" src="{{ course.preview_video.embed_url }}"
+                    allowfullscreen
+                    frameborder="0">
+
+            </iframe>
+            <div class="youtube-fullscreen-substitute" onclick="toggleFullScreen(event);">
+              <img src="{% static 'main/img/fs.png' %}">
+            </div>
         </div>
       </div>
       <div class="row">
