@@ -3,17 +3,12 @@ from django.contrib.auth.models import User
 
 
 # This Video model should hold a reference to the lesson it relates to
-# In order to follow the one to many relationship that exists
+# In order to follow the one-to-many relationship that exists
 # But its more appropriate for the user for the lessons to hold the videos field
 class Video(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
-    youtube_video_id = models.CharField(max_length=50)
-
-    @property
-    def embed_url(self):
-        return "{}/{}?modestbranding=1"\
-            .format("https://youtube.com/embed", self.youtube_video_id)
+    file = models.FileField(upload_to="videos")
 
     def __str__(self):
         return self.title
@@ -42,7 +37,7 @@ class Lesson(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     body = models.TextField()
-    videos = models.ManyToManyField(Video, related_name="videos", null=True)
+    videos = models.ManyToManyField(Video, related_name="videos")
     courses = models.ManyToManyField(Course, blank=True, related_name="lessons")
 
     def __str__(self):
@@ -54,8 +49,18 @@ class Progress(models.Model):
     course = models.ForeignKey(Course, blank=True, on_delete=models.CASCADE, related_name="progress")
     opened_lessons = models.ManyToManyField(Lesson, blank=True, related_name="progress")
 
+    def __str__(self):
+        return "%s's progress for %s" % (self.user, self.course)
+
+    class Meta:
+        verbose_name_plural = "Progresses"
+        unique_together = (("user", "course"),)
+
 
 class CheckHomework(models.Model):
     user = models.ForeignKey(User, blank=True, on_delete=models.CASCADE, related_name="CheckHomework")
     lesson = models.ForeignKey(Lesson, blank=True, on_delete=models.CASCADE, related_name="CheckHomework")
     mark = models.IntegerField()
+
+    def __str__(self):
+        return "%s's homework for %s" % (self.user, self.lesson)

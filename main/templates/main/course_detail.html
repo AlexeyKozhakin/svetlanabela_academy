@@ -1,0 +1,73 @@
+{% extends "../base/base.html" %}
+
+{% load static %}
+
+{% block title %} {{ course.title }} {% endblock title %}
+
+{% block external_styles %}
+<link rel="stylesheet" href="{% static 'main/css/course_detail.css' %}">
+
+<link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+<link href="https://unpkg.com/@videojs/themes@1/dist/forest/index.css" rel="stylesheet">
+{% endblock external_styles %}
+
+{% block external_scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.10.2/video.min.js"></script>
+{% endblock external_scripts %}
+
+{% block content %}
+<div class="row course-wrapper">
+  <div class="col-7 preview-video-and-description-wrapper">
+    <div class="row">
+      <div class="col-12">
+	    <div class="course__preview-video">
+          <video-js id="preview-video" class="video-js vjs-theme-forest" data-setup="{}" preload="auto" controls>
+            <source src="{{ course.preview_video.file.url }}" type="video/mp4">
+          </video-js>
+        </div>
+      </div>
+      <div class="row">
+	    <h2 class="col-12 course-title">{{ course.title }}</h2>
+
+	    <p class="col-12 course__description">
+	    {{ course.description }}
+	    </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-1"></div>
+  {# The course is not locked #}
+  {% if boolean %}
+  <div class="col course-lessons">
+    <h3 class="course-lessons__title">Lessons</h3>
+
+    {# Render the accessible lessons #}
+    {% for opened_lesson in opened_lessons %}
+    <div class="course-lesson__wrapper">
+      <a class="course-lesson__link" href="{% url 'lesson_detail' id_course=course.id id_lesson=opened_lesson.id %}">{{ opened_lesson.name }}</a>
+    </div>
+    {% endfor %}
+
+    {# Closed lessons are opened if the preceding lesson has been completed #}
+    {% for closed_lesson in closed_lessons %}
+    <div class="course-lesson__wrapper d-flex">
+      <span>{{ closed_lesson.name }}</span>
+      <span class="material-icons-outlined" style="margin-left: auto; color: white;">lock</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  {# Locked lessons #}
+  <div class="col course-lessons">
+    <h3 class="course-lessons__title">Lessons</h3>
+    
+    {% for lesson in lessons %}
+    <div class="course-lesson__wrapper d-flex">
+      <span>{{ lesson.name }}</span>
+      <span class="material-icons-outlined" style="margin-left: auto; color: white;">lock</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

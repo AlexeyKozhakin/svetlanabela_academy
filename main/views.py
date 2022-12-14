@@ -34,16 +34,16 @@ def index(request):
 
 
 @login_required(login_url='/login/')
-def profile_page(request):
-    user_profile = User.objects.get(id=request.user.id)
-    profile = Profile.objects.get(user=user_profile)
+def profile(request):
+    user = User.objects.get(id=request.user.id)
+    user_profile = Profile.objects.get(user=user)
     return render(request, "main/profile.html", {
-        'profile': profile,
+        'profile': user_profile,
     })
 
 
 @login_required(login_url='/login/')
-def courses(request):
+def course_list(request):
     user_profile = User.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=user_profile)
     courses_list = Course.objects.all()
@@ -56,7 +56,7 @@ def courses(request):
         k = Tuple(c, (ol/tot)*100)
         percent_list.append(k)
 
-    return render(request, "main/courses.html", {
+    return render(request, "main/course_list.html", {
         'courses_list': courses_list,
         'user': profile,
         'percent_list': percent_list,
@@ -64,7 +64,7 @@ def courses(request):
 
 
 @login_required(login_url='/login/')
-def course_page(request, id):
+def course_detail(request, id):
     user_profile = User.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=user_profile)
     course = Course.objects.get(id=id)
@@ -82,7 +82,7 @@ def course_page(request, id):
             else:
                 closed_lessons.append(le)
 
-    return render(request, "main/course.html", {
+    return render(request, "main/course_detail.html", {
         'user': user_profile,
         'course': course,
         'lessons': les,
@@ -93,7 +93,7 @@ def course_page(request, id):
     })
 
 
-def lesson_page(request, id_course, id_lesson):
+def lesson_detail(request, id_course, id_lesson):
     lesson = Lesson.objects.get(id=id_lesson)
     course = Course.objects.get(id=id_course)
     user_profile = User.objects.get(id=request.user.id)
@@ -109,27 +109,15 @@ def lesson_page(request, id_course, id_lesson):
             break
         i += 1
 
-    return render(request, "main/lesson.html", {
+    return render(request, "main/lesson_detail.html", {
         'lesson': lesson,
         'boolean': boolean,
         'course': course,
     })
 
 
-@staff_member_required
-def admin_page(request):
-    course_list = Course.objects.all()
-    users = User.objects.all()
-    profiles = Profile.objects.all()
-    return render(request, "main/admin_page.html", {
-        'courses': course_list,
-        'users': users,
-        'profiles': profiles,
-    })
-
-
 @login_required(login_url='/login/')
-def action(request, id_course, id_lesson):
+def mark_lesson_completed(request, id_course, id_lesson):
     lesson = Lesson.objects.get(id=id_lesson)
     user_profile = User.objects.get(id=request.user.id)
     progresses = Progress.objects.filter(user=user_profile)
