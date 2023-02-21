@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from markdownfield.models import MarkdownField, RenderedMarkdownField
+from markdownfield.validators import VALIDATOR_STANDARD
 
 # This Video model should hold a reference to the lesson it relates to
 # In order to follow the one-to-many relationship that exists
-# But its more appropriate for the user for the lessons to hold the videos field
+# But its more appropriate for the lessons to hold the videos field
 class Video(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
@@ -16,7 +18,9 @@ class Video(models.Model):
 
 class Course(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = MarkdownField(rendered_field="parsed_description", validator=VALIDATOR_STANDARD, null=True,
+                                blank=True, use_admin_editor=True)
+    parsed_description = RenderedMarkdownField(null=True, blank=True, editable=False)
     preview_video = models.ForeignKey(Video, null=True, related_name="preview_video", on_delete=models.SET_NULL)
         
     def __str__(self):
@@ -35,8 +39,11 @@ class Profile(models.Model):
 
 class Lesson(models.Model):
     name = models.CharField(max_length=200)
-    description = models.TextField(null=True, blank=True)
-    body = models.TextField()
+    description = MarkdownField(rendered_field="parsed_description", validator=VALIDATOR_STANDARD, null=True, blank=True, use_admin_editor=True)
+    parsed_description = RenderedMarkdownField(null=True, blank=True, editable=False)
+    body = MarkdownField(rendered_field="parsed_body", validator=VALIDATOR_STANDARD, null=True,
+                                blank=True, use_admin_editor=True)
+    parsed_body = RenderedMarkdownField(null=True, blank=True, editable=False)
     videos = models.ManyToManyField(Video, related_name="videos")
     courses = models.ManyToManyField(Course, blank=True, related_name="lessons")
 
