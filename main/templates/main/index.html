@@ -15,9 +15,9 @@
     <h3 class="m-course__title">
       <a class="m-course__link" href="{% url 'course_detail' id=course.id %}">{{ course.title }}</a>
     </h3>
-    <p class="m-course__description">
-      {{ course.description }}
-    </p>
+    <div class="m-course__description markdown">
+      {{ course.parsed_description | safe }}
+    </div>
     <div class="m-course__enrollButtonWrapper">
       <a class="btn btn-sm btn-success rounded-0 m-course__enrollButton" href="{% url 'course_detail' id=course.id %}">Go to course</a>
     </div>
@@ -27,13 +27,13 @@
   {% for course in  not_courses_list %}
     <div class="m-course">
       <h3 class="m-course__title">
-	{{ course.title }}
+	    {{ course.title }}
       </h3>
-      <p class="m-course__description">
-	{{ course.description }}
-      </p>
+      <div class="m-course__description">
+	    {{ course.parsed_description | safe }}
+      </div>
       <div class="text-right m-course__enrollButtonWrapper">
-	<a class="btn btn-sm btn-success rounded-0 m-course__enrollButton" href="{% url 'course_detail' id=course.id %}">Go to course</a>
+	    <a class="btn btn-sm btn-success rounded-0 m-course__enrollButton" href="{% url 'course_detail' id=course.id %}">Go to course</a>
       </div>
     </div>
   {% endfor %}

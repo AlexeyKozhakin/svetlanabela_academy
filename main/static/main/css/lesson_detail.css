@@ -5,8 +5,9 @@
 }
 
 .lesson__name {
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .lesson__description-title {
@@ -39,6 +40,7 @@
     background-color: #D9ECD9;
 }
 
+/* Select all lesson videos */
 [id|="lesson-video"] {
     position: absolute !important;
     top: 0;

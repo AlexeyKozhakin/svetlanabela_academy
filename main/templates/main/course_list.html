@@ -18,12 +18,12 @@
     <h3 class="m-course__title">
       <a class="m-course__link" href="{% url 'course_detail' id=course.id %}">{{ course.title }}</a>
     </h3>
-    <p class="m-course__description">
-      {{ course.description }}
-    </p>
+    <div class="m-course__description">
+      {{ course.parsed_description | safe }}
+    </div>
     {% for c in percent_list %}
     {% if course == c.course %}
-    <div class="m-course__progress mx-3 badge bg-success">
+    <div class="m-course__progress badge bg-success">
       Progress: {{ c.percent | floatformat:"0" }}
     </div>
     {% endif %}

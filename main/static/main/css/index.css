@@ -6,7 +6,7 @@ body {
     font-size: 24px;
 }
 .m-contentWrapper {
-    margin-top: 41.887px;
+    margin-top: 42px;
 }
 .m-coursesWrapper {
     display: grid;
@@ -15,7 +15,11 @@ body {
     grid-gap: 20px;
 }
 .m-course {
+    padding: 10px;
     background-color: white;
+    border-left: 4px solid white;
+    transition: border-left;
+    transition-duration: .2s;
 }
 
 .m-course:hover {
@@ -24,9 +28,7 @@ body {
 }
 
 .m-course__title {
-    font-size: 20px;
-    padding: 10px;
-    padding-bottom: 7px;
+    font-size: 18px;
     color: #737373;
 }
 
@@ -35,17 +37,14 @@ body {
     text-decoration: none;
 }
 .m-course__description {
-    color: #8C8C8C;
-    padding-right: 15px;
-    padding-left: 15px;
     text-align: justify;
+    color: #8C8C8C;
+
 }
 
 .m-course__enrollButtonWrapper {
     display: flex;
     justify-content: flex-end;
-    padding-right: 15px;
-    padding-bottom: 15px;
 }
 
 .h-homeNavItemActive {
