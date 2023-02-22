@@ -36,7 +36,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
-
+# TODO: The Lesson model should be like a linked list, and not to rely on ordering for lessons(based on pk) to preserve the right order
 class Lesson(models.Model):
     name = models.CharField(max_length=200)
     description = MarkdownField(rendered_field="parsed_description", validator=VALIDATOR_STANDARD, null=True, blank=True, use_admin_editor=True)
