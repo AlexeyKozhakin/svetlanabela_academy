@@ -9,7 +9,9 @@ from markdownfield.validators import VALIDATOR_STANDARD
 # But its more appropriate for the lessons to hold the videos field
 class Video(models.Model):
     title = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
+    description = MarkdownField(rendered_field="parsed_description", validator=VALIDATOR_STANDARD, null=True,
+                               blank=True, use_admin_editor=True)
+    parsed_description = RenderedMarkdownField(null=True, blank=True, editable=False)
     file = models.FileField(upload_to="videos")
 
     def __str__(self):

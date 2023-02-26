@@ -32,7 +32,7 @@
       </video-js>
     </div>
     <div class="lesson__video-description">
-      {{ lesson_video.description }}
+      {{ lesson_video.parsed_description | safe }}
     </div>
   </div>
   {% endfor %}
