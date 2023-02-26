@@ -10,11 +10,6 @@
     margin-bottom: 10px;
 }
 
-.lesson__description-title {
-    margin-top: 20px;
-    font-size: 20px;
-}
-
 .lesson__body {
     text-align: justify;
     color: #333333;
@@ -32,15 +27,19 @@
     margin-top: 10px;
 }
 
-.lesson__video-wrapper {
+.lesson__video-container {
     position: relative;
-    padding-bottom: 56.25%;
+    padding-bottom: 56.25%; /* Maintain an aspect ratio of 16:9 */
     height: 0;
     overflow: hidden;
     background-color: #D9ECD9;
 }
 
-/* Select all lesson videos */
+.lesson__body {
+    margin-top: 25px;
+}
+
+/* Select all lesson videos  and make them expand to fill their container .lesson__video-container */
 [id|="lesson-video"] {
     position: absolute !important;
     top: 0;
